@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Data Replacement</title>
+</head>
+<body>
+    <h1>Data Already Exists</h1>
+    <p>Do you want to delete the existing data?</p>
+    <p><strong>Existing Data:</strong></p>
+    <p>Serial Number: {{ data.serial_number }}</p>
+    <p>Lab Number: {{ data.lab_number }}</p>
+    <p>Commodity Type: {{ data.commodity_type }}</p>
+    <p>Supplier: {{ data.supplier }}</p>
+    <form action="/replace" method="POST">
+        <input type="hidden" name="existing_data" value="{{data}}">
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

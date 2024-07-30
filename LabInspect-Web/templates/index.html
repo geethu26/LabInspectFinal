@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/login.css') }}">
+
+</head>
+
+<body>
+
+    <img src="{{ url_for('static', filename='/logo.png') }}" alt="Logo" id="logo">
+
+
+    <div class="steps">
+
+        <div>
+            <img src="{{ url_for('static', filename='/steps.png') }}" alt="steps" id="steps">
+        </div>
+
+
+        <div class="login-box">
+
+            <!-- LOGIN FORM -->
+            <form action="/login" method="POST" id="loginform">
+                <h2>LOGIN</h2>
+                <h6>to continue ></h6>
+                <div class="input-group">
+                    <input type="text" name="userid" id="userid" class="input_text" required>
+                    <label for="userid" class="input_label">User ID</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" id="password" class="input_text" required>
+                    <label for="password" class="input_label">Password</label>
+                </div>
+                <div>
+                    <input type="submit" value="LOGIN" class="submitbtn">
+                </div>
+                <div id="signup">
+                    <a id="signup-toggle">Click here to Sign Up</a>
+                </div>
+            </form>
+
+            <!-- Sign UP Form -->
+            <form action="/signup" method="POST" id="signupform" style="display: none;">
+                <h2>SIGN UP</h2>
+                <h6>Please fill in the required details</h6>
+                <div class="input-group">
+                    <input type="text" name="name" id="name" class="input_text" required>
+                    <label for="name" class="input_label">Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="userid" id="userid" class="input_text" required>
+                    <label for="userid" class="input_label">Staff ID</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="email" id="email" class="input_text" required>
+                    <label for="email" class="input_label">Email ID</label>
+                </div>
+
+                <select name="branch" class="selectopn">
+                    <option selected disabled>---Select Branch---</option>
+                    <option>CMPN</option>
+                    <option>INFT</option>
+                    <option>EXTC</option>
+                    <option>ELEC</option>
+                    <option>MECH</option>
+                    <option>FE</option>
+                    <option>STAFF</option>
+                </select>
+
+                <select name="designation" class="selectopn">
+                    <option selected disabled>---Select Designation---</option>
+                    <option>Principal</option>
+                    <option>HOD</option>
+                    <option>Lab Assistant</option>
+                </select>
+
+                <div class="input-group">
+                    <input type="password" name="password" id="password" class="input_text" required>
+                    <label for="password" class="input_label">Password</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="confirm_password" id="confirm_password" class="input_text" required>
+                    <label for="confirm_password" class="input_label">Confirm Password</label>
+                </div>
+                <div>
+                    <input type="submit" value="SIGN UP" class="submitbtn">
+                </div>
+                <div id="signup">
+                    <a id="login-toggle">Click here if you already have an account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginForm = document.getElementById("loginform");
+            const signupForm = document.getElementById("signupform");
+            const loginToggle = document.getElementById("login-toggle");
+            const signupToggle = document.getElementById("signup-toggle");
+
+            // Function to toggle between login and signup forms
+            function toggleForms() {
+                loginForm.style.display = loginForm.style.display === "none" ? "block" : "none";
+                signupForm.style.display = signupForm.style.display === "none" ? "block" : "none";
+            }
+
+            // Event listeners to handle form toggling
+            loginToggle.addEventListener("click", function (e) {
+                e.preventDefault(); // Prevent link from navigating
+                toggleForms();
+            });
+
+            signupToggle.addEventListener("click", function (e) {
+                e.preventDefault(); // Prevent link from navigating
+                toggleForms();
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

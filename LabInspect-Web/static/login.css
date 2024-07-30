@@ -1,0 +1,153 @@
+body{
+    background-image: url('/static/login_bg.png');
+    background-size: cover;
+}
+
+img#logo{
+    width: 350px;
+    margin: 0px 20px;
+}
+
+img#steps{
+    width: 600px;
+    margin: 0px 50px;
+    /* background-color: aqua; */
+}
+
+.steps{
+    display: flex;
+    padding: 10px;
+}
+
+.login-box {
+    background-color: aliceblue;
+    width: 400px;
+    height: fit-content;
+    margin: 0px auto;
+    margin-top: 75px;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(128, 128, 128, 0.853);
+}
+
+
+h2 {
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+h6{
+    font-size: 16px;
+    padding: 0px;
+    font-weight: 100;
+    margin: 2px;
+    /* margin-bottom: 20px; */
+    font-family: sans-serif;
+}
+
+
+.input-group {
+    display: block;
+    position: relative;
+    margin: 20px auto;
+}
+
+.input_text {
+    margin: 2px auto;
+    width: 80%;
+    font: inherit;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    outline: 2px solid gray;
+    background-color: transparent;
+    transition: outline-color 500ms;
+}
+
+select.selectopn{
+    margin: 8px auto;
+    width: 85%;
+    color: gray;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    outline: 2px solid gray;
+    background-color: transparent;
+}
+
+select.selectopn option {
+    color: black;
+    /* text-align: center; */
+}
+
+.input_text:is(:focus, :valid) {
+    outline-color: #0daba2;
+}
+
+.input_label {
+    margin: 0px 20px;
+    margin-bottom: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 10px;
+    translate: 10px 10px;
+    color: gray;
+    transition: translate 200ms, scale 200ms ease-in-out;
+}
+
+.input_text:focus+.input_label,
+.input_text:valid+.input_label {
+    color: rgb(62, 61, 61);
+    margin: 2px 20px;
+    padding-inline: 5px;
+    translate: 10px -14px;
+    scale: 0.8;
+    background-color: aliceblue;
+}
+
+input.submitbtn {
+    padding: 10px;
+    width: 110px;
+    border-radius: 10px;
+    margin: 10px auto;
+    border: 2px solid #0daba2;
+    background-color: transparent;
+    color: #0daba2;
+    font-weight: bold;
+}
+
+input.submitbtn:hover {
+    cursor: pointer;
+    background-color: #0daba2;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+
+#signup{
+    margin: 15px auto;
+}
+
+#signup a{
+    color: rgb(84, 94, 143);
+    text-decoration: none;
+    padding: 5px;
+}
+
+#signup a:hover{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px gray;
+    color: #0daba2;
+}
+
+form#signupform h6{
+    font-size: 15px;
+    font-weight: 400;
+    font-family: sans-serif;
+}

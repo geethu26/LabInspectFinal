@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate QR </title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/qrgen.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='/logo.png') }}" id="logo">
+        <h5>ADMIN DASHBOARD</h5>
+    </header>
+
+    <div class="main-container">
+        <form action="/generate_qr_code" method="post" id="generateqr">
+            <h3>Generate a new QR code.</h3>
+            <label for="serial_number">Serial Number:</label><br>
+            <input type="text" id="serial_number" name="serial_number" required autocomplete="off"><br>
+
+            <label for="lab_number">Lab Number:</label><br>
+            <input type="text" id="lab_number" name="lab_number" required autocomplete="off"><br>
+
+            <label for="commodity_type">Commodity Type:</label><br>
+            <!-- <input type="text" id="commodity_type" name="commodity_type" required><br> -->
+            <select id="commodity_type" name="commodity_type" required>
+                <option>monitor</option>
+                <option>keyboard</option>
+                <option>mouse</option>
+                <option>cpu</option>
+            </select><br>
+
+            <label for="supplier">Supplier:</label><br>
+            <input type="text" id="supplier" name="supplier" required autocomplete="off"><br>
+
+            <div class="sub">
+                <input type="submit" value="Generate QR Code">
+                <br>OR<br><br>
+
+                <div id="fetch">
+                    <a id="fetch-toggle">Click here to Fetch QR</a>
+                </div>
+            </div>
+
+        </form>
+
+        <form id="qr-form" method="POST" style="display: none;">
+            <h3>Fetch an existing QR.</h3>
+            <label for="lab_number">Lab Number:</label><br>
+            <input type="text" name="lab_number" id="lab_number" required autocomplete="off"><br>
+            <label for="commodity_type">Commodity Type:</label><br>
+            <input type="text" name="commodity_type" id="commodity_type" required autocomplete="off"><br>
+            <label for="serial_number">Serial Number:</label><br>
+            <input type="text" name="serial_number" id="serial_number" required autocomplete="off"><br>
+            <input type="submit" value="Fetch QR">
+
+            <div id="qr-code-container">
+                <!-- The QR code will be displayed here using JavaScript -->
+            </div>
+
+            <button id="download-qr" class="btn" style="display: none;"><i class="fa fa-download"></i>Download QR</button>
+
+            <input type="hidden" id="qr-code-data" name="qr_code_data">
+
+            <div id="generate">
+                <a id="generate-toggle">Click here to Generate QR</a>
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const generateqr = document.getElementById("generateqr");
+            const qrform = document.getElementById("qr-form");
+            const fetchToggle = document.getElementById("fetch-toggle");
+            const generateToggle = document.getElementById("generate-toggle");
+
+            // Function to toggle between login and signup forms
+            function toggleForms() {
+                generateqr.style.display = generateqr.style.display === "none" ? "block" : "none";
+                qrform.style.display = qrform.style.display === "none" ? "block" : "none";
+            }
+
+            // Event listeners to handle form toggling
+            fetchToggle.addEventListener("click", function (e) {
+                e.preventDefault(); // Prevent link from navigating
+                toggleForms();
+            });
+
+            generateToggle.addEventListener("click", function (e) {
+                e.preventDefault(); // Prevent link from navigating
+                toggleForms();
+            });
+        });
+
+
+        $(document).ready(function () {
+            $("#qr-form").submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "/fetch_qr",
+                    type: "POST",
+                    data: $("#qr-form").serialize(),
+                    success: function (data) {
+                        if (data.qr_code) {
+                            $("#qr-code-container").html('<img src="data:image/png;base64,' + data.qr_code + '" alt="QR Code">');
+
+                            $("#qr-code-data").val(data.qr_code);
+
+                            $("#download-qr").show();
+                        }
+                    },
+                    error: function () {
+                        $("#qr-code-container").html("Error fetching QR Code.");
+                    }
+                });
+            });
+
+            $("#download-qr").click(function () {
+
+                var Lab = $("#lab_number").val();
+                var commodityType = $("#commodity_type").val();
+                var Serial = $("#serial_number").val();
+
+                // var filename = `qrcode_${labNumber}_${commodityType}_${serialNumber}.png`;
+
+
+                var qrCodeData = $("#qr-code-data").val();
+
+                var blob = new Blob([atob(qrCodeData)], { type: "image/png" });
+
+                var url = window.URL.createObjectURL(blob);
+
+                var a = document.createElement("a");
+                a.href = url;
+                // a.download = "qr_code.png"; 
+                // a.download = filename; 
+                a.download = `qrcode_${Lab}_${commodityType}_${Serial}.png`;
+
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>

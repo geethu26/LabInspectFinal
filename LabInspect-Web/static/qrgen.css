@@ -1,0 +1,148 @@
+body{
+    /* background-color: #d3ddea; */
+    background-image: url('/static/bgwaves.png');
+    background-size: cover;
+    background-position: 0px 0px;
+    margin: 0px;
+}
+
+header{
+    background-color: #011b39;
+    display: flex;
+}
+
+img#logo{
+    width: 300px;
+    margin: 0px 20px;
+}
+
+
+h5{
+    color: white;
+    font-size: 25px;
+    margin: auto 250px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.main-container{
+    margin: 0px auto;
+    margin-top: 50px;
+    background-color: #011b39;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 1px solid white;
+    font-size: 15px;
+    width: 600px;
+    height: fit-content;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    position: relative;
+    animation: pop-up 1s ease-in-out forwards; 
+    opacity: 0;
+    transform: translateY(50%); 
+}
+
+@keyframes pop-up {
+    0% {
+        opacity: 0;
+        transform: translateY(50%); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+form h3{
+    font-size: 30px;
+}
+
+.main-container form{
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.main-container input,select{
+    padding: 2px;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    width: 250px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-bottom: 2px solid white;
+    /* height: 20px; */
+}
+
+select option{
+    color: black;
+}
+
+input:focus, select:focus{
+    outline: none;
+}
+
+input[type=submit]{
+    background-color:#ff4848;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 2px;
+    border: none;
+    border: 2px solid #ff4848;
+    margin: 10px 10px;
+}
+
+input[type=submit]:hover{
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #ff4848;
+}
+
+
+#fetch,#generate{
+    background-color:#488eff;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 2px;
+    margin: 10px 20px;
+    border: 2px solid #488eff;
+}
+
+#fetch:hover,#generate:hover{
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #488eff;
+}
+
+.sub{
+    display: flex;
+    margin: 10px 0px;
+}
+
+#qr-code-container{
+    margin: 10px auto;
+}
+
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .btn i{
+    margin: 5px;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+  }

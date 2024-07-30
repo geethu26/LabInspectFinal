@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/admin.css') }}">
+
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <img src="{{ url_for('static', filename='/logo.png') }}" id="logo">
+            <h5>ADMIN DASHBOARD</h5>
+            <button class="btn" id="logout">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <h3>Generate and Fetch QR Codes <br>
+                for your devices.</h3>
+            <img src="{{ url_for('static', filename='/qr.png') }}" class="boximg">
+            <br>
+            <br>
+            <a href="{{ url_for('qr') }}">Continue</a>
+        </div>
+
+        <div class="box box2">
+            <h3>View Reports <br>of your devices.</h3>
+            <img src="{{ url_for('static', filename='/analysis.png') }}" class="boximg">
+            <br>
+            <br>
+            <a >Continue</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
